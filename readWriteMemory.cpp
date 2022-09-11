@@ -22,7 +22,7 @@ int main()
 
         DWORD pId;
 
-        DWORD address = 0x0A240000;
+        DWORD address = 0x0A240000; // Change the base address after looking it up in Cheat Engine
 
         GetWindowThreadProcessId(hWnd, &pId);
 
