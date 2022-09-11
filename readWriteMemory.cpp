@@ -7,10 +7,10 @@ using namespace std;
 int main()
 
 {
-
+    int value;
     int newValue = 500;
 
-    HWND hWnd = FindWindowA(0, "Notepad++");
+    HWND hWnd = FindWindow(TEXT("Notepad"), NULL);
 
     if (hWnd == 0)
     {
@@ -21,6 +21,8 @@ int main()
     {
 
         DWORD pId;
+
+        DWORD address = 0x0A240000;
 
         GetWindowThreadProcessId(hWnd, &pId);
 
@@ -33,10 +35,22 @@ int main()
         }
         else
         {
+            int isReadSuccessful = ReadProcessMemory(hProc, (LPVOID)address, &value, sizeof(value), 0);
 
-            int isSuccessful = WriteProcessMemory(hProc, (LPVOID)0x09CF0000, &newValue, (DWORD)sizeof(newValue), NULL);
+            if (isReadSuccessful > 0)
+            {
 
-            if (isSuccessful > 0)
+                clog << "Process memory read." << endl;
+            }
+            else
+            {
+
+                cerr << "Cannot read process memory." << endl;
+            }
+
+            int isWriteSuccessful = WriteProcessMemory(hProc, (LPVOID)address, &newValue, (DWORD)sizeof(newValue), NULL);
+
+            if (isWriteSuccessful > 0)
             {
 
                 clog << "Process memory written." << endl;
