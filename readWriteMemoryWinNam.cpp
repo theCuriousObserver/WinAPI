@@ -1,5 +1,6 @@
-#include <iostream>
+// ------------------------------- C++ program to read and write memory of a file using Window title -------------------------------
 
+#include <iostream>
 #include <windows.h>
 
 using namespace std;
@@ -8,7 +9,7 @@ int main()
 
 {
     int value;
-    int newValue = 500;
+    int newValue = 1000;
 
     HWND hWnd = FindWindow(TEXT("Notepad"), NULL);
 
