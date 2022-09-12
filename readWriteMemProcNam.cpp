@@ -14,7 +14,7 @@ int main()
     int value;
     int newValue = 1000;
 
-    DWORD address = 0x29270000;
+    DWORD address = 0x13520000; // Change the base address after looking it up in Cheat Engine
 
     PROCESSENTRY32 entry;
     entry.dwSize = sizeof(PROCESSENTRY32);
@@ -25,7 +25,7 @@ int main()
     {
         while (Process32Next(snapshot, &entry) == TRUE)
         {
-            if (stricmp((const char *)entry.szExeFile, "notepad.exe") == 0)
+            if (stricmp((const char *)entry.szExeFile, "VALORANT.exe") == 0)
             {
                 HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, entry.th32ProcessID);
 
